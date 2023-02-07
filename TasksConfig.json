@@ -1,0 +1,39 @@
+{
+	"TasksD_Config": [
+		{
+			"task1_D_name": "taskD1",
+			"task1_D_queue": "queueD1",
+			"task1_D_delay": 5
+		},
+		{
+			"task2_D_name": "taskD2",
+			"task2_D_queue": "queueD2",
+			"task2_D_delay": 5
+		},
+		{
+			"task3_D_name": "taskD3",
+			"task3_D_queue": "queueD3",
+			"task3_D_delay": 5
+		}
+	],
+	"TasksS_Config": [
+		{
+			"task1_S_name": "taskS1",
+			"task1_S_delay": 2,
+			"task1_S_queue": "queueS1",
+			"task1_S_priority": 1
+		},
+		{
+			"task2_S_name": "taskS2",
+			"task2_S_delay": 2,
+			"task2_S_queue": "queueS1",
+			"task2_S_priority": 2
+		},
+		{
+			"task3_S_name": "taskS3",
+			"task3_S_delay": 2,
+			"task3_S_queue": "queueS1",
+			"task3_S_priority": 3
+		}
+	]
+}
