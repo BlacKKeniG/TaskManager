@@ -1,12 +1,12 @@
-#include "TaskManadgerConfiguration.h"
+#include "TaskManagerConfiguration.h"
 
-TaskManadgerConfiguration::TaskManadgerConfiguration(const string& jsonFileName) : _numOfDelayTask{}, _numOfSimpleTask{},
+TaskManagerConfiguration::TaskManagerConfiguration(const string& jsonFileName) : _numOfDelayTask{}, _numOfSimpleTask{},
 _Task_D_Names{}, _Task_D_Queue{}, _Task_D_Delay{},
 _Task_S_Names{}, _Task_S_Delay{}, _Task_S_Queue{}, _Task_S_Priority{} {
 	initFromJson(jsonFileName);
 }
 
-void TaskManadgerConfiguration::initFromJson(const string& jsonFileName) {
+void TaskManagerConfiguration::initFromJson(const string& jsonFileName) {
 	boost::property_tree::ptree root;
 	boost::property_tree::read_json(jsonFileName, root);
 

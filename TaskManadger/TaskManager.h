@@ -11,7 +11,7 @@
 #include "TimeNowFunction.h"
 #include "Task.h"
 #include "Queue.h"
-#include "TaskManadgerConfiguration.h"
+#include "TaskManagerConfiguration.h"
 
 using std::string;
 using std::thread;
@@ -28,17 +28,17 @@ using PriorityQueueTask = std::priority_queue<Task, std::deque<Task>, CompareTas
 using Queues = std::vector<Queue<QueueTask>>;
 using Threads = std::vector<std::thread>;
 
-class TaskManadger
+class TaskManager
 {
 public:
-	explicit TaskManadger(const string configFileName);
+	explicit TaskManager(const string configFileName);
 
-	~TaskManadger() = default;
+	~TaskManager() = default;
 
 	void run(const std::atomic<bool>& flag, mutex& mtxCoutForLog);
 
 private:
-	TaskManadgerConfiguration _taskConfiguration;
+	TaskManagerConfiguration _taskConfiguration;
 	Queues _queuesDelayTasks;
 	Queue<PriorityQueueTask> _QueueSimpleTasks;
 	mutex _mtxQueueS;

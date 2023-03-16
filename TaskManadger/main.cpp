@@ -6,7 +6,7 @@
 
 #include "SimpleProgramTimer.h"
 #include "TimeNowFunction.h"
-#include "TaskManadger.h"
+#include "TaskManager.h"
 
 int main() {
 
@@ -18,8 +18,8 @@ int main() {
 
 	try {
 		mutex mtx_cout;
-		TaskManadger taskManadger{ "../TasksConfig.json" };
-		std::future<void> f{ std::async(std::launch::async, &TaskManadger::run, &taskManadger, std::ref(run), std::ref(mtx_cout)) };
+		TaskManager taskManager{ "../TasksConfig.json" };
+		std::future<void> f{ std::async(std::launch::async, &TaskManager::run, &taskManager, std::ref(run), std::ref(mtx_cout)) };
 
 		while (run) {
 			if (GetAsyncKeyState(VK_ESCAPE)) {

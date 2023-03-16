@@ -24,6 +24,7 @@
     <ProjectGuid>{a036c011-ed0b-40c2-8abe-e9d5b2add75e}</ProjectGuid>
     <RootNamespace>TaskManadger</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>TaskManager</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -130,16 +131,16 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="SimpleProgramTimer.cpp" />
     <ClCompile Include="Task.cpp" />
-    <ClCompile Include="TaskManadger.cpp" />
-    <ClCompile Include="TaskManadgerConfiguration.cpp" />
+    <ClCompile Include="TaskManager.cpp" />
+    <ClCompile Include="TaskManagerConfiguration.cpp" />
     <ClCompile Include="TimeNowFunction.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Queue.h" />
     <ClInclude Include="SimpleProgramTimer.h" />
     <ClInclude Include="Task.h" />
-    <ClInclude Include="TaskManadger.h" />
-    <ClInclude Include="TaskManadgerConfiguration.h" />
+    <ClInclude Include="TaskManager.h" />
+    <ClInclude Include="TaskManagerConfiguration.h" />
     <ClInclude Include="TimeNowFunction.h" />
   </ItemGroup>
   <ItemGroup>

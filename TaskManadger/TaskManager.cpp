@@ -1,10 +1,10 @@
-#include "TaskManadger.h"
+#include "TaskManager.h"
 
-TaskManadger::TaskManadger(const string configFileName) :
+TaskManager::TaskManager(const string configFileName) :
 	_taskConfiguration{ configFileName }, _QueueSimpleTasks{}, _queuesDelayTasks{}, _threads{} {
 }
 
-void TaskManadger::run(const std::atomic<bool>& flag, mutex& mtxCoutForLog) {
+void TaskManager::run(const std::atomic<bool>& flag, mutex& mtxCoutForLog) {
 
 	emplaseStartingDelayTasks(mtxCoutForLog);
 	delayedTaskHandler(flag);
@@ -12,14 +12,14 @@ void TaskManadger::run(const std::atomic<bool>& flag, mutex& mtxCoutForLog) {
 	joinThreads();
 }
 
-void TaskManadger::emplaseStartingDelayTasks(mutex& mtxCoutForLog) {
+void TaskManager::emplaseStartingDelayTasks(mutex& mtxCoutForLog) {
 	for (unsigned i{ 0 }; i < _taskConfiguration._numOfDelayTask; ++i) {
 		_queuesDelayTasks.push_back(Queue<QueueTask>{ _taskConfiguration._Task_D_Queue.at(i) });
 		emplaseDelayTask(i, mtxCoutForLog);
 	}
 }
 
-void TaskManadger::emplaseDelayTask(const unsigned indexConfiguration, mutex& mtxCoutForLog) {
+void TaskManager::emplaseDelayTask(const unsigned indexConfiguration, mutex& mtxCoutForLog) {
 
 	_queuesDelayTasks.at(indexConfiguration)._container.emplace(_taskConfiguration._Task_D_Names.at(indexConfiguration),
 		indexConfiguration, _taskConfiguration._Task_D_Queue.at(indexConfiguration), [&, indexConfiguration] {
@@ -46,7 +46,7 @@ void TaskManadger::emplaseDelayTask(const unsigned indexConfiguration, mutex& mt
 	coutTaskLog(indexConfiguration, "created", mtxCoutForLog);
 }
 
-void TaskManadger::delayedTaskHandler(const std::atomic<bool>& flag) {
+void TaskManager::delayedTaskHandler(const std::atomic<bool>& flag) {
 	for (auto& queue : _queuesDelayTasks) {
 		_threads.push_back(thread{ [&] {
 			while (flag) {
@@ -62,7 +62,7 @@ void TaskManadger::delayedTaskHandler(const std::atomic<bool>& flag) {
 	}
 }
 
-void TaskManadger::priorityTasksHandler(const std::atomic<bool>& flag, mutex& mtxCoutForLog) {
+void TaskManager::priorityTasksHandler(const std::atomic<bool>& flag, mutex& mtxCoutForLog) {
 	while (flag) {
 		if (!_QueueSimpleTasks._container.empty()) {
 
@@ -80,7 +80,7 @@ void TaskManadger::priorityTasksHandler(const std::atomic<bool>& flag, mutex& mt
 	}
 }
 
-void TaskManadger::joinThreads() {
+void TaskManager::joinThreads() {
 	for (auto& thread : _threads) {
 		if (thread.joinable()) {
 			thread.join();
@@ -88,7 +88,7 @@ void TaskManadger::joinThreads() {
 	}
 }
 
-void TaskManadger::setTextColorByTaskIndex(const unsigned index) {
+void TaskManager::setTextColorByTaskIndex(const unsigned index) {
 
 	HANDLE handel = GetStdHandle(STD_OUTPUT_HANDLE);
 
@@ -97,7 +97,7 @@ void TaskManadger::setTextColorByTaskIndex(const unsigned index) {
 	else if (index == 2) SetConsoleTextAttribute(handel, 7);
 }
 
-void TaskManadger::coutTaskLog(const unsigned indexConfiguration, const string& status, mutex& mtx_cout) {
+void TaskManager::coutTaskLog(const unsigned indexConfiguration, const string& status, mutex& mtx_cout) {
 
 	unl_mutex unl_cout(mtx_cout);
 	setTextColorByTaskIndex(indexConfiguration);

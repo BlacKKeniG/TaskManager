@@ -6,12 +6,12 @@
 using std::string;
 using std::vector;
 
-	class TaskManadgerConfiguration {
+	class TaskManagerConfiguration {
 	public:
-		explicit TaskManadgerConfiguration(const string& jsonFileName);
-		~TaskManadgerConfiguration() = default;
+		explicit TaskManagerConfiguration(const string& jsonFileName);
+		~TaskManagerConfiguration() = default;
 	
-		friend class TaskManadger;
+		friend class TaskManager;
 	protected:
 	
 		unsigned _numOfDelayTask;
