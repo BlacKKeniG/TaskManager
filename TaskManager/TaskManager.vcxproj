@@ -21,10 +21,9 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{a036c011-ed0b-40c2-8abe-e9d5b2add75e}</ProjectGuid>
-    <RootNamespace>TaskManadger</RootNamespace>
+    <ProjectGuid>{88b516c7-48bf-42ac-a3a8-9c4af34354d0}</ProjectGuid>
+    <RootNamespace>TaskManager</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
-    <ProjectName>TaskManager</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -144,7 +143,6 @@
     <ClInclude Include="TimeNowFunction.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\TasksConfig.json" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
